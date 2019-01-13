@@ -7,7 +7,7 @@ function slimfish_exec_time -d 'Show command execution time'
         return
     end
 
-    set -l exec_time (echo $CMD_DURATION | humanize_duration)
+    set -l exec_time (echo "$CMD_DURATION 1000" | awk '{printf "%.3fs", $1 / $2}')
     echo -sn (set_color $SLIMFISH_EXEC_TIME_COLOR)"$exec_time"(set_color normal)
 end
 
